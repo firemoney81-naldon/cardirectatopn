@@ -1,23 +1,586 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "소나타 DN8 모델의 평균 유지비는 얼마인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "소나타 DN8 유지비는 연간 주행거리, 운전자 보험 경력, 선택 옵션에 따라 달라집니다. 일반적인 기준으로 유류비, 자동차세, 보험료, 소모품 교체 비용을 합산하여 연간 300~400만 원 선으로 예상할 수 있습니다. 특히 1.6 터보 모델과 2.0 모델 간에 연비 차이가 있으므로, 주행 스타일에 맞는 모델 선택이 중요합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "소나타 하이브리드 모델이 일반 가솔린 모델보다 유지비가 저렴한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "네, 소나타 하이브리드 모델은 일반 가솔린 모델에 비해 연비가 월등히 높아 유류비 절감 효과가 큽니다. 또한 하이브리드 차량은 취득세 감면 혜택이 있으며, 공영주차장 할인 및 혼잡통행료 면제 등 추가적인 혜택도 있습니다. 초기 차량 가격은 높지만, 장기적인 관점에서 유지비 절약에 매우 유리합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "소나타 소모품 교체 주기는 어떻게 되며, 비용을 절약하는 방법은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "소모품 교체 주기는 엔진 오일(10,000~15,000km), 에어컨 필터(10,000km), 타이어(50,000~60,000km) 등 모델과 운행 조건에 따라 다릅니다. 비용 절약을 위해 정비소 대신 직접 부품을 구매하여 공임만 지불하거나, 보험사별 할인 혜택을 비교하여 가입하는 것이 좋습니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- 스타일: 부드럽고 다채로운 색, 타이틀 강조, 계층 구조 -->
+  <style>
+    :root {
+      --primary-color: #004d40; /* 짙은 녹색 계열 (현대차 연상) */
+      --secondary-color: #4db6ac; /* 부드러운 청록색 */
+      --accent-color: #a7ffeb; /* 밝은 민트색 */
+      --highlight-color: #e0f2f1; /* 은은한 배경색 */
+      --text-color: #2D3E50; /* 어두운 회색 */
+      --bg-light: #F8F8F8;
+      --bg-white: #ffffff;
+      --btn-color: #FF6F61; /* 주황색 계열 CTA 버튼 */
+      --btn-hover: #FF4F3B;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin:0; padding:0;
+      background-color: var(--bg-light);
+      color: var(--text-color);
+      line-height:1.7;
+    }
+    .container {
+      max-width: 1000px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    header {
+      background-color: var(--primary-color);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--bg-white);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      font-weight:700;
+    }
+    header h1 a {
+      color: var(--bg-white);
+      text-decoration: none;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      color: var(--bg-white);
+      text-align: center;
+      padding: 90px 20px;
+    }
+    .hero h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      font-weight:700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .hero p {
+      font-size: 1.4em;
+      margin-bottom: 35px;
+    }
+    .cta-btn {
+      background-color: var(--btn-color);
+      color: var(--bg-white);
+      padding: 18px 45px;
+      font-size:1.3em;
+      font-weight: bold;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 0px 15px rgba(0,0,0,0.2);
+    }
+    .cta-btn:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-3px);
+    }
+    .compare-form-box {
+      background-color: var(--bg-white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-top: 30px;
+      text-align:left;
+    }
+    .compare-form-box h2 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 25px;
+      font-size:2em;
+    }
+    .compare-form-box p {
+      font-size: 1.1em;
+      text-align: center;
+      margin-bottom: 20px;
+      color:#666;
+    }
+    .compare-form-box label {
+      display: block;
+      margin-bottom:8px;
+      font-weight:500;
+      color: var(--text-color);
+    }
+    .compare-form-box input, .compare-form-box select {
+      width:100%;
+      padding:12px;
+      margin-bottom:20px;
+      border:1px solid #ddd;
+      border-radius:6px;
+      box-sizing:border-box;
+      font-size:1em;
+    }
+
+    .content-section {
+      margin-top: 40px;
+      padding: 60px 0;
+    }
+    .content-section.bg-white {
+      background-color: var(--bg-white);
+      border-radius:10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .content-section h2 {
+      font-size: 2.8em;
+      color: var(--secondary-color);
+      margin-bottom:30px;
+      font-weight:700;
+      text-align:center;
+    }
+    .content-section h3 {
+      font-size:1.8em;
+      color: var(--primary-color);
+      margin-top:40px;
+      margin-bottom:15px;
+      border-left: 5px solid var(--primary-color);
+      padding-left: 15px;
+      font-weight:700;
+    }
+    .content-section h4 {
+      font-size:1.3em;
+      color: var(--text-color);
+      margin-top:25px;
+      margin-bottom:10px;
+      font-weight:500;
+    }
+    .feature-grid {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top:30px;
+    }
+    .feature-grid .item {
+      width: calc(33.33% - 20px);
+      margin:10px;
+      padding:20px;
+      background-color: var(--highlight-color);
+      border-radius:8px;
+      text-align:center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-grid .item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .feature-grid .item img {
+      width:80px; height:80px;
+      margin-bottom:15px;
+    }
+    .keyword-list {
+      list-style:none;
+      padding:0;
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top:30px;
+    }
+    .keyword-list li {
+      background-color: var(--secondary-color);
+      color: var(--bg-white);
+      padding:10px 20px;
+      margin:5px;
+      border-radius:20px;
+      font-weight:500;
+      font-size:0.9em;
+    }
+    .faq-item {
+      border-bottom:1px solid #ddd;
+      padding:20px 0;
+    }
+    .faq-item h3 {
+      cursor:pointer;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      font-size:1.4em;
+      color: var(--primary-color);
+      border-left:none;
+      padding-left:0;
+    }
+    .faq-item h3::after {
+      content: '+';
+      font-size:1.5em;
+      color: var(--secondary-color);
+      transition: transform 0.3s;
+    }
+    .faq-item.active h3::after {
+      content: '-';
+      transform: rotate(180deg);
+    }
+    .faq-item p {
+      display: none;
+      padding-top:10px;
+      color:#555;
+      font-size:1.1em;
+    }
+    .faq-item.active p {
+      display: block;
+    }
+    .content-section p, .content-section ul {
+      font-size: 1.1em;
+      color: #444;
+    }
+    .content-section ul {
+      padding-left: 20px;
+      list-style: disc;
+    }
+    .content-section ul li {
+      margin-bottom: 10px;
+    }
+    .image-container {
+      margin: 30px 0;
+      text-align: center;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 1em;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    .data-table th {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+      font-weight: 500;
+    }
+    .data-table tr:nth-child(even) {
+      background-color: var(--highlight-color);
+    }
+    footer {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+      text-align:center;
+      padding: 40px 20px;
+      font-size:0.9em;
+    }
+    footer a {
+      color: var(--bg-white);
+      text-decoration:none;
+      margin:0 10px;
+    }
+    footer a:hover {
+      text-decoration:underline;
+    }
+    @media (max-width:768px) {
+      .hero h1 { font-size:2.4em; }
+      .hero p { font-size:1.2em; }
+      .cta-btn { padding:15px 30px; font-size:1.1em; }
+      .compare-form-box { padding:25px; }
+      .content-section h2 { font-size:2.2em; }
+      .feature-grid .item { width:100%; margin:10px 0; }
+      .keyword-list li { margin:3px; font-size:0.8em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">소나타 유지비 분석 가이드</a></h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>2026년 소나타 유지비 완벽 분석</h1>
+        <p>DN8, LF, 하이브리드, N Line 모델별 연간 총 예상 비용과 절약 팁을 한눈에 비교해보세요.</p>
+        <div class="compare-form-box">
+          <h2>맞춤형 유지비 견적 요청</h2>
+          <p>내 차의 정확한 모델과 운전 습관을 입력하고, 맞춤형 예상 유지비 견적을 받아보세요.</p>
+          <form action="#" method="post">
+            <label for="car-model">모델 선택</label>
+            <select id="car-model" name="car_model" required>
+              <option value="">-- 모델을 선택하세요 --</option>
+              <option value="sonata_dn8_20">소나타 DN8 2.0 가솔린</option>
+              <option value="sonata_dn8_16t">소나타 DN8 1.6 터보</option>
+              <option value="sonata_dn8_hybrid">소나타 DN8 하이브리드</option>
+              <option value="sonata_newrise">소나타 뉴 라이즈 (LF F/L) 2.0</option>
+              <option value="sonata_lf_gdi">소나타 LF 2.0 GDI</option>
+              <option value="sonata_yf">소나타 YF 2.0 (구형)</option>
+            </select>
+            <label for="driving-distance">연간 주행거리 (km)</label>
+            <input type="number" id="driving-distance" name="driving_distance" placeholder="예: 15000" required>
+            <label for="insurance-age">운전자 나이 (만 나이)</label>
+            <input type="number" id="insurance-age" name="insurance_age" placeholder="예: 35" required>
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" required>
+            <button type="submit" class="cta-btn">맞춤 견적 요청하기</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+      <div class="container">
+        <h2>소나타 유지비, 왜 모델마다 천차만별인가?</h2>
+        <p>소나타(Sonata)는 대한민국 중형 세단의 상징적인 모델로, 오랜 기간 동안 많은 사랑을 받아왔습니다. 하지만 연식과 모델에 따라 유지비는 크게 달라집니다. 특히 최신 모델인 DN8과 이전 모델인 LF, YF는 물론, 하이브리드 모델과 N Line 고성능 모델은 각각의 특성에 맞는 유지비 구조를 가지고 있습니다. 소나타의 유지비는 크게 유류비, 자동차세, 보험료, 소모품 교체 및 정비 비용으로 나눌 수 있으며, 이 가이드에서는 각 항목을 상세하게 분석하여 독자 여러분이 합리적인 의사결정을 할 수 있도록 돕습니다.</p>
+
+        <h3 style="margin-top:50px;">핵심 키워드 분석 및 정보 개요</h3>
+        <ul class="keyword-list">
+          <li>#소나타유지비</li>
+          <li>#소나타DN8유지비</li>
+          <li>#소나타LF유지비</li>
+          <li>#소나타하이브리드유지비</li>
+          <li>#소나타연비</li>
+          <li>#소나타보험료</li>
+          <li>#소나타자동차세</li>
+          <li>#소나타소모품비용</li>
+          <li>#소나타NLine유지비</li>
+          <li>#소나타가성비</li>
+          <li>#소나타장단점</li>
+          <li>#소나타중고차유지비</li>
+          <li>#소나타견적비교</li>
+          <li>#소나타후기</li>
+        </ul>
+
+        <h3 style="margin-top:50px;">1. 모델별 소나타 유지비 종합 비교 (2026년 기준)</h3>
+        <p>2026년 현재 기준으로 소나타 유지비를 비교할 때, 모델별 엔진 타입과 연식이 가장 중요한 변수입니다. 일반적으로 하이브리드 모델은 압도적인 연비로 유류비 절감 효과가 크지만 초기 구매 가격이 높고, N Line 모델은 성능 위주로 설계되어 연비와 보험료가 상대적으로 높게 책정될 수 있습니다. 다음은 소나타의 주요 모델별 연간 예상 유지비를 비교한 표입니다. (연간 15,000km 주행, 30대 운전자 기준 예상 금액).</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>소나타 DN8 2.0 가솔린</th>
+              <th>소나타 DN8 하이브리드</th>
+              <th>소나타 LF 2.0 가솔린</th>
+              <th>소나타 YF 2.0 (구형)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>연비 (복합)</td>
+              <td>12.5 km/l</td>
+              <td>19.5 km/l</td>
+              <td>12.0 km/l</td>
+              <td>11.5 km/l</td>
+            </tr>
+            <tr>
+              <td>예상 연간 유류비</td>
+              <td>약 200만 원</td>
+              <td>약 130만 원</td>
+              <td>약 210만 원</td>
+              <td>약 220만 원</td>
+            </tr>
+            <tr>
+              <td>예상 연간 자동차세 (2000cc)</td>
+              <td>519,000 원</td>
+              <td>519,000 원</td>
+              <td>519,000 원</td>
+              <td>519,000 원</td>
+            </tr>
+            <tr>
+              <td>예상 연간 보험료 (30대, 무사고 기준)</td>
+              <td>약 70~80만 원</td>
+              <td>약 75~85만 원</td>
+              <td>약 60~70만 원</td>
+              <td>약 50~60만 원</td>
+            </tr>
+            <tr>
+              <td>예상 연간 소모품 교체비</td>
+              <td>약 30~50만 원</td>
+              <td>약 20~40만 원</td>
+              <td>약 40~60만 원</td>
+              <td>약 50~70만 원</td>
+            </tr>
+            <tr>
+              <td>총 연간 유지비 (예상)</td>
+              <td>약 350~380만 원</td>
+              <td>약 270~310만 원</td>
+              <td>약 360~390만 원</td>
+              <td>약 370~400만 원</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:20px; font-size:0.9em;">* 위의 금액은 2026년 3월 기준 유가(휘발유 1,700원/L) 및 표준 보험료를 적용한 예상치이며, 실제 견적은 달라질 수 있습니다.</p>
+
+        <h3 style="margin-top:50px;">2. 소나타 모델별 상세 분석: DN8, LF, YF, N Line의 장단점</h3>
+        <p>소나타 모델은 시대의 흐름에 따라 많은 변화를 겪었습니다. 각 모델의 특징을 이해하는 것이 유지비 절감에 도움이 됩니다. 소나타 DN8 (8세대 모델)은 최신 기술이 적용되어 초기 잔고장 위험이 적지만, 첨단 센서나 부품의 수리 비용이 다소 높을 수 있습니다. 반면 LF (7세대) 및 YF (6세대) 모델은 비교적 부품 가격이 저렴하고 정비 노하우가 많아 유지보수가 용이합니다.</p>
+
+        <h4>2-1. 소나타 DN8 (8세대) 유지비 분석: 연비와 첨단 기술</h4>
+        <p>소나타 DN8 (Sonata DN8)은 스마트스트림 GDI 엔진을 탑재하여 이전 세대 대비 연비와 출력이 향상되었습니다. 1.6 터보 모델의 경우 180마력의 준수한 성능을 제공하며, 연비 효율성도 우수합니다. 그러나 DN8 모델은 최첨단 주행 보조 시스템(ADAS)이 탑재되어 있어, 센서나 레이더 관련 부품 손상 시 수리 비용이 상당히 높을 수 있습니다. 특히 N Line 모델은 고성능을 지향하는 만큼, 전용 브레이크 패드나 서스펜션 부품의 가격이 일반 모델보다 높아질 수 있음을 염두에 두어야 합니다. 신규 가입 혜택을 제공하는 보험 상품을 선택하는 것이 비용 절감에 도움이 될 수 있습니다.</p>
+
+        <h4>2-2. 소나타 하이브리드 (Hybrid) 유지비 분석: 경제성과 혜택</h4>
+        <p>소나타 하이브리드는 유지비 측면에서 가장 유리한 선택지입니다. 일반 가솔린 모델 대비 리터당 5km 이상의 연비 차이를 보이며, 이는 연간 유류비에서 수십만원 이상의 차이로 이어집니다. 또한, 하이브리드 차량은 취득세 감면 혜택, 공영주차장 할인, 혼잡통행료 면제 등 다양한 혜택을 제공받습니다. 다만, 하이브리드 전용 배터리 교체 비용이 발생할 수 있으나, 현대차는 배터리에 대한 긴 보증 기간을 제공하므로 크게 염려할 필요는 없습니다. 장기적인 관점에서 가장 저렴한 유지비를 보여줍니다.</p>
+
+        <h4>2-3. 소나타 LF (7세대) 및 YF (6세대) 유지비 분석: 중고차의 가성비</h4>
+        <p>소나타 LF 및 YF는 중고차 시장에서 높은 가성비를 자랑합니다. 차량 가격이 저렴하고, 부품 공급이 원활하여 수리 비용이 낮습니다. 그러나 GDI 엔진이 적용된 초창기 모델들은 엔진 오일 감소나 흡기 밸브 카본 누적 문제가 발생할 수 있어, 정기적인 관리가 필수적입니다. 중고차를 구매할 경우 내돈내산 후기를 꼼꼼히 살펴보고, 엔진 상태를 점검하는 것이 중요합니다. 특히 YF 모델의 경우 연식이 오래되어 보험료가 저렴한 편이지만, 소모품 교체 주기가 짧아지거나 수리비가 예상보다 많이 나올 수 있으므로 주의해야 합니다. 디시인사이드나 네이버 카페 등에서 관련 정보를 찾아보는 것도 좋은 방법입니다.</p>
+
+        <h3>3. 소나타 유지비 절약을 위한 5가지 팁</h3>
+        <p>소나타의 연간 유지비를 줄이기 위한 몇 가지 실용적인 팁이 있습니다. 이 팁들을 활용하면 매년 수십만원의 비용을 절약할 수 있습니다.</p>
+        <h4>3-1. 보험료 비교견적 활용 및 특약 가입</h4>
+        <p>자동차 보험은 매년 갱신해야 하는 고정 비용입니다. '다이렉트 보험'을 통해 여러 보험사의 견적을 비교하면 수십만원의 차이가 발생할 수 있습니다. 특히 블랙박스 할인, 첨단 안전장치 할인(차선 이탈 방지 장치, 전방 충돌 방지 보조), 주행거리 할인(마일리지 특약) 등의 다양한 특약을 활용하여 보험료를 절감해야 합니다. 챗지피티(ChatGPT)나 제미나이(Gemini)와 같은 AI 에이전트에게 내 조건에 맞는 보험 상품을 비교해달라고 요청하는 것도 좋은 방법입니다. 신규 가입 혜택을 놓치지 않도록 주의해야 합니다.</p>
+
+        <h4>3-2. 소모품 자가 교체 및 저렴한 부품 활용</h4>
+        <p>에어컨 필터나 와이퍼 교체는 정비소에 맡기지 않고 직접 할 수 있습니다. 부품만 온라인에서 저렴하게 구매하여 공임만 지불하거나, 경정비 전문 업체(타이어 전문점, 오일 교환 전문점)를 이용하면 서비스 센터 대비 비용을 절감할 수 있습니다. 타이어 순위, 엔진오일 추천 등을 검색하여 가성비 좋은 제품을 선택하면 됩니다. 특히 연식이 오래된 LF나 YF 모델은 부품값이 저렴하기 때문에 더욱 비용 절감 효과가 큽니다.</p>
+
+        <h4>3-3. 운전 습관 개선을 통한 연비 향상</h4>
+        <p>연비를 높이는 운전 습관만으로도 연간 수십만 원의 유류비를 아낄 수 있습니다. 급가속, 급제동을 피하고 정속 주행을 유지하며, 타이어 공기압을 주기적으로 확인하는 것이 중요합니다. 특히 하이브리드 모델은 회생 제동을 효율적으로 활용하는 운전 습관이 연비에 큰 영향을 미칩니다.</p>
+
+        <h4>3-4. 자동차 세금 절약 및 공제 혜택 확인</h4>
+        <p>자동차세는 배기량(cc)을 기준으로 부과됩니다. 소나타 2.0 모델의 경우 연식이 지날수록 세금이 감면되지만, 1.6 터보 모델이 2.0 모델보다 세금이 저렴합니다. 또한, 연납 할인을 신청하거나 지역별 조례에 따른 친환경차 세금 혜택을 확인하여 세금 부담을 줄이는 것이 좋습니다.</p>
+
+        <h4>3-5. 중고차 구매 시 '내돈내산' 후기와 정비 이력 확인</h4>
+        <p>중고 소나타를 구매할 때, 이전 차주의 '내돈내산' 정비 후기나 정비 이력을 반드시 확인해야 합니다. 특히 GDI 엔진 모델은 흡기 클리닝 이력이나 오일 소모 여부를 확인하여 잠재적인 수리 비용을 사전에 예측해야 합니다. 중고차 가격 비교 사이트를 통해 적정 금액을 확인하고, 딜러의 견적을 맹신하지 말고 꼼꼼히 따져봐야 합니다.</p>
+
+        <h3>4. 소나타 모델별 소모품 교체 주기 및 예상 비용 (2026년)</h3>
+        <p>소나타 유지비에서 소모품 비용은 무시할 수 없는 부분입니다. 주기적인 관리가 차량의 수명을 늘리고 큰 고장을 예방합니다. 아래는 주요 소모품 교체 주기와 예상 비용입니다.</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>소모품</th>
+              <th>교체 주기 (권장)</th>
+              <th>예상 교체 비용 (공임 포함)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>엔진 오일 및 필터</td>
+              <td>10,000 ~ 15,000 km</td>
+              <td>7만 원 ~ 12만 원</td>
+            </tr>
+            <tr>
+              <td>미션 오일</td>
+              <td>60,000 ~ 80,000 km</td>
+              <td>15만 원 ~ 25만 원</td>
+            </tr>
+            <tr>
+              <td>브레이크 패드 (앞)</td>
+              <td>30,000 ~ 50,000 km</td>
+              <td>8만 원 ~ 15만 원</td>
+            </tr>
+            <tr>
+              <td>타이어</td>
+              <td>50,000 ~ 60,000 km</td>
+              <td>개당 10만 원 ~ 18만 원</td>
+            </tr>
+            <tr>
+              <td>배터리</td>
+              <td>3년 ~ 5년</td>
+              <td>10만 원 ~ 20만 원</td>
+            </tr>
+            <tr>
+              <td>점화 플러그 및 코일</td>
+              <td>80,000 ~ 100,000 km</td>
+              <td>10만 원 ~ 18만 원</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:20px; font-size:0.9em;">* N Line 모델이나 하이브리드 모델은 부품 종류에 따라 비용 차이가 발생할 수 있습니다. 예를 들어, N Line은 고성능 타이어를 사용하므로 교체 비용이 더 높습니다.</p>
+        <div class="image-container">
+          <!-- Pexels 이미지 소스 (예시) -->
+          <img src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="자동차 정비 및 유지보수 이미지">
+        </div>
+
+        <h3>5. 소나타 유지비 관련 키워드 분석 및 정보 (추가 키워드 통합)</h3>
+        <p>소나타 유지비 관련 검색 시 자주 등장하는 키워드들을 분석하여, 독자 여러분의 궁금증을 해소합니다. 네이버, 구글, 유튜브에서 '소나타 유지비 얼마', '소나타 가성비 비교', '소나타 중고차 장단점' 등을 검색하는 사용자들을 위한 정보입니다.</p>
+        <h4>5-1. 소나타 N Line 유지비</h4>
+        <p>소나타 N Line 모델은 2.5 터보 엔진을 탑재하여 290마력에 달하는 고성능을 자랑합니다. 하지만 고성능 차량인 만큼 유지비도 일반 모델보다 높습니다. 연비는 11.1km/l 내외로 일반 2.0 모델보다 낮으며, 보험료도 차량 가액과 고성능 이미지가 반영되어 더 높게 책정될 수 있습니다. 또한 브레이크 패드, 타이어 등 고성능 소모품의 가격이 비싸기 때문에 유지비 예상 금액을 높게 잡아야 합니다.</p>
+        <h4>5-2. 소나타 LF vs DN8 유지비 차이점</h4>
+        <p>소나타 LF와 DN8은 엔진 성능과 첨단 기술에서 차이가 납니다. DN8은 스마트스트림 엔진으로 연비가 소폭 개선되었지만, LF는 상대적으로 부품 가격이 저렴한 장점이 있습니다. 중고차 시장에서 LF를 선택할 경우, 연식에 따른 잔고장 발생 가능성을 고려하여 유지비 견적을 내야 합니다. LF 초기형 모델의 경우 GDI 엔진의 카본 축적 문제가 있을 수 있으므로, 해당 정비 비용을 염두에 두고 구매를 결정해야 합니다.</p>
+        <h4>5-3. 저렴한 소나타 유지비 찾기: 할인, 이벤트, 상품권 활용</h4>
+        <p>소나타 신차 구매 시 딜러사별 현금지원이나 상품권 이벤트, 신규 가입 혜택을 비교하여 초기 비용을 줄일 수 있습니다. 또한 정비소 선택 시 할인이나 프로모션을 활용하면 소모품 비용을 절감할 수 있습니다. 예를 들어, 타이어 업체에서 진행하는 1+1 이벤트나 오일 교환 할인 이벤트를 활용하면 저렴한곳을 찾을 수 있습니다.</p>
+
+        <h3 style="margin-top:50px;">6. 자주 묻는 질문 (FAQ)</h3>
+
+        <div class="faq-item">
+          <h3>Q1. 소나타 중고차를 구매하면 유지비가 얼마나 절약되나요?</h3>
+          <p>중고차는 신차 대비 차량 가격이 저렴하므로 감가상각비가 적습니다. 또한 연식이 오래된 모델은 자동차세가 감면되어 유지비가 절약됩니다. 하지만 중고차는 예상치 못한 수리 비용이 발생할 수 있으므로, 딜러에게 정확한 차량 정비 이력을 요구해야 합니다. 특히 LF, YF 모델은 부품값이 저렴하여 수리 부담이 적지만, 연식에 따른 부품 노후화를 고려해야 합니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q2. 소나타 하이브리드 배터리 교체 비용은 얼마나 드나요?</h3>
+          <p>소나타 하이브리드 배터리는 일반적으로 보증 기간이 길기 때문에(현대차는 10년 20만 km) 보증 기간 내에는 무상으로 교체할 수 있습니다. 보증 기간이 지난 후 교체하게 될 경우, 모델에 따라 다르지만 보통 200만 원 내외의 비용이 발생합니다. 하지만 배터리 수명이 길어 자주 교체할 필요는 없으며, 긴 주행거리와 연비 절감 효과를 고려하면 충분히 상쇄됩니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q3. 소나타 LPG 모델의 유지비는 어떤가요?</h3>
+          <p>소나타 LPG (LPi) 모델은 가솔린 모델 대비 연료비가 저렴합니다. 2026년 기준으로 LPG 가격이 휘발유보다 낮아 유류비 절감 효과가 매우 큽니다. 하지만 트렁크 공간이 가스통으로 인해 좁고, 연비 자체는 가솔린 모델보다 떨어집니다. 또한 LPG 충전소가 휘발유 주유소보다 적어 불편할 수 있습니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q4. 소나타 유지비 절감을 위한 보험 가입 팁은 무엇인가요?</h3>
+          <p>소나타 보험 가입 시 가장 중요한 것은 할인 특약과 비교 견적입니다. 다이렉트 보험을 통해 여러 보험사의 예상 금액을 비교하고, 주행거리가 짧다면 마일리지 특약을, 블랙박스가 있다면 블랙박스 특약을 반드시 가입해야 합니다. 챗지피티(ChatGPT)나 AI 에이전트에게 내 조건에 맞는 보험 상품을 비교해달라고 요청하는 것이 효율적인 방법입니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q5. 소나타 DN8과 K5의 유지비 차이는 얼마나 나나요?</h3>
+          <p>소나타 DN8과 K5는 플랫폼과 파워트레인을 공유하기 때문에 기본적인 유지비(엔진 오일, 타이어 등 소모품)는 큰 차이가 없습니다. 다만, 보험료는 차량 가액이나 운전자의 조건에 따라 달라지며, 디자인이나 옵션 구성에 따라 초기 구매 가격이 달라집니다. 대체로 소나타와 K5의 유지비 장단점은 거의 동일하며 개인의 취향에 따라 선택하면 됩니다.</p>
+        </div>
+
+        <h3 style="margin-top:50px;">7. 신뢰할 수 있는 외부 자료 및 참고 링크</h3>
+        <p>소나타 유지비에 대한 더 정확하고 공식적인 정보를 얻기 위해 아래 외부 사이트를 참고하십시오. 관련 법규, 세금, 정부 지원금 등 신뢰성 있는 자료를 확인할 수 있습니다.</p>
+        <ul>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9E%90%EB%8F%99%EC%B0%A8%EC%84%B8%ED%8F%89%EA%B5%90%EB%B2%95" target="_blank" rel="noopener">법제처: 자동차세 표준 계산법 (지방세법)</a></li>
+          <li><a href="https://www.car.go.kr/index.jsp" target="_blank" rel="noopener">자동차민원 대국민 포털: 차량 등록 정보 및 연비 정보</a></li>
+          <li><a href="https://www.namu.wiki/w/%ED%98%84%EB%8C%80%20%EC%86%8C%EB%82%98%ED%83%80" target="_blank" rel="noopener">나무위키: 현대 소나타 모델별 상세 정보 및 역사</a></li>
+          <li><a href="https://www.e-insu.net/" target="_blank" rel="noopener">보험개발원: 자동차 보험료 비교 조회 서비스</a></li>
+          <li><a href="https://www.hyundai.com/kr/ko/customer-service/service-network/blu-hands" target="_blank" rel="noopener">현대자동차 공식 서비스 네트워크 (블루핸즈)</a></li>
+        </ul>
+        <p style="margin-top:20px;">위 자료들은 소나타 유지보수, 법적 기준, 세금 계산, 그리고 공식 서비스 정보를 확인하는 데 도움을 줍니다.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // FAQ 토글 기능
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+      item.addEventListener('click', event => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+        const answer = parent.querySelector('p');
+        if (parent.classList.contains('active')) {
+          answer.style.display = 'block';
+        } else {
+          answer.style.display = 'none';
+        }
+      });
+    });
+  </script>
+  
